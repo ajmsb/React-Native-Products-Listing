@@ -1,0 +1,7 @@
+HomeAndGarden =(Sofa, garden table, bed)
+Housing (appartment rent, house for sale)
+VehiclesAndBikes (car for sale, fat bike, bmx, motor ktm)
+ClothingAndShoes (jacket, shoes)
+PetsAndFood (dogs food, dogs leach, cat house)
+HobbiesaAndSports (guitar, piano, basketball, skateboard, skies)
+ElectronicsAndMultimedia (phone, pc, tv, dishwasher)
