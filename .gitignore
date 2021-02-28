@@ -14,3 +14,4 @@ web-build/
 app/api/adsApi.js
 app/api/api.js
 app/hooks/useAds.js
+copy.js
