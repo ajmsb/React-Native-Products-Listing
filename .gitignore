@@ -11,3 +11,6 @@ web-build/
 
 # macOS
 .DS_Store
+app/api/adsApi.js
+app/api/api.js
+app/hooks/useAds.js

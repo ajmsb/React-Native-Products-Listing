@@ -5,7 +5,7 @@ import Subtitle from '../content/Subtitle';
 import Title from '../content/Title';
 
 const Card = ({ item, style }) => {
-	const { pictures, title, desc, price } = item;
+	const { pictures, title, description, price } = item;
 	if (pictures == '') {
 		pictures.unshift(
 			'https://archive.org/download/no-photo-available/no-photo-available.png'
@@ -17,7 +17,7 @@ const Card = ({ item, style }) => {
 			<View style={styles.contentContainer}>
 				<Title>{title}</Title>
 				<Price>{price} €</Price>
-				<Subtitle>{desc}</Subtitle>
+				<Subtitle>{description}</Subtitle>
 			</View>
 		</View>
 	);

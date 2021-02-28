@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { ActivityIndicator, FlatList } from 'react-native';
+import { ActivityIndicator } from 'react-native';
 import Screen from './app/components/screen/Screen';
 import SearchBar from './app/components/global/SearchBar';
 import ClothingAndShoes from './app/components/ClothingAndShoes';
@@ -10,11 +10,18 @@ import Housing from './app/components/Housing';
 import PetsAndFood from './app/components/PetsAndFood';
 import VehiclesAndBikes from './app/components/VehiclesAndBikes';
 
-// import data from './fakeData';
-
 export default function App() {
 	const [isLoading, setLoading] = useState(true);
 	const [data, setData] = useState([]);
+
+	useEffect(() => {
+		fetch('https://gradedexerciseapi.herokuapp.com/ads/count')
+			.then((response) => response.json())
+			.then((json) => setData(json.advertisements))
+			.catch((error) => console.error(error))
+			.finally(() => setLoading(false));
+	}, []);
+
 	const clothingAndShoes = data.filter(
 		(item) => item.category === 'ClothingAndShoes'
 	);
@@ -33,46 +40,20 @@ export default function App() {
 		(item) => item.category === 'VehiclesAndBikes'
 	);
 
-	useEffect(() => {
-		fetch('http://192.168.1.104:3000/ads/count')
-			.then((response) => response.json())
-			.then((json) => setData(json.advertisements))
-			.catch((error) => console.error(error))
-			.finally(() => setLoading(false));
-	}, []);
-
 	return (
 		<Screen>
+			<SearchBar />
 			{isLoading ? (
 				<ActivityIndicator />
 			) : (
 				<>
-					<SearchBar />
-					<ClothingAndShoes
-						data={clothingAndShoes}
-						keyExtractor={({ id }, index) => id}
-					/>
-					<ElectronicsAndMultimedia
-						data={electronicsAndMultimedia}
-						keyExtractor={({ id }, index) => id}
-					/>
-					<HobbiesAndSports
-						data={hobbiesAndSports}
-						keyExtractor={({ id }, index) => id}
-					/>
-					<HomeAndGarden
-						data={homeAndGarden}
-						keyExtractor={({ id }, index) => id}
-					/>
-					<Housing data={housing} keyExtractor={({ id }, index) => id} />
-					<PetsAndFood
-						data={petsAndFood}
-						keyExtractor={({ id }, index) => id}
-					/>
-					<VehiclesAndBikes
-						data={vehiclesAndBikes}
-						keyExtractor={({ id }, index) => id}
-					/>
+					<ClothingAndShoes data={clothingAndShoes} />
+					<ElectronicsAndMultimedia data={electronicsAndMultimedia} />
+					<HobbiesAndSports data={hobbiesAndSports} />
+					<HomeAndGarden data={homeAndGarden} />
+					<Housing data={housing} />
+					<PetsAndFood data={petsAndFood} />
+					<VehiclesAndBikes data={vehiclesAndBikes} />
 				</>
 			)}
 		</Screen>
